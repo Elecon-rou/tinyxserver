@@ -8,15 +8,15 @@
 #define TRANS_SERVER
 #define XSERV_t
 
-//#ifdef XSERV_t
+#ifdef XSERV_t
 #include "os.h"
-//#else
+#else
 #include <stdlib.h>
 #define xalloc(_size)		malloc(_size)
 #define xcalloc(_num,_size)	calloc(_num,_size)
 #define xrealloc(_ptr,_size)	realloc(_ptr,_size)
 #define xfree(_ptr)		free(_ptr)
-//#endif
+#endif
 
 #include <X11/Xtrans/Xtransint.h>
 

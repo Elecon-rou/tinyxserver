@@ -472,7 +472,7 @@ DefineSelf (int fd)
     ifn.lifn_family = AF_UNSPEC;
     ifn.lifn_flags = 0;
     if (ioctl (fd, SIOCGLIFNUM, (char *) &ifn) < 0)
-        Error ("Getting interface count");
+        ErrorF("Getting interface count");
     if (len < (ifn.lifn_count * sizeof(struct lifreq))) {
 	len = ifn.lifn_count * sizeof(struct lifreq);
 	bufptr = malloc(len);
@@ -502,7 +502,7 @@ DefineSelf (int fd)
 #endif
 
     if (ifioctl (fd, IFC_IOCTL_REQ, (pointer) &ifc) < 0)
-        Error ("Getting interface configuration (4)");
+        ErrorF("Getting interface configuration (4)");
 
     cplim = (char *) IFC_IFC_REQ + IFC_IFC_LEN;
 
@@ -834,6 +834,7 @@ ResetHosts (const char *display)
     FILE		*fd;
     char		*ptr;
     int                 i, hostlen;
+
 #if (defined(TCPCONN) && \
      (!defined(IPv6) || !defined(AF_INET6)))
     union {

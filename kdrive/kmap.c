@@ -21,7 +21,7 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <kdrive-config.h>
+/* #include <kdrive-config.h> */
 #include "kdrive.h"
 
 #include <errno.h>
