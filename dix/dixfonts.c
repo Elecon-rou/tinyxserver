@@ -1859,9 +1859,7 @@ InitFonts()
     patternCache = MakeFontPatternCache();
 
     {
-#ifdef KDRIVESERVER
         BuiltinRegisterFpeFunctions();
-#endif
         FontFileRegisterFpeFunctions();
     }
 }

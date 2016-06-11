@@ -3,7 +3,7 @@ CC = gcc
 AR = ar cr
 
 # paths
-PREFIX=/usr
+PREFIX=/usr/local
 LIBDIR=$(PREFIX)/lib/
 INCDIR=$(PREFIX)/include/
 DATADIR=$(PREFIX)/share/
@@ -14,8 +14,7 @@ CFLAGS=-pipe -Os -mtune=generic -Wall $(INCS)
 LDFLAGS=-Wl,--gc-sections,--sort-common,-s $(LIBS)
 
 OPTIONS=\
--DKDRIVESERVER \
--DKDRIVEFBDEV \
+-Di386\
 -DSMART_SCHEDULE \
 -DLOCALCONN \
 -DTCPCONN \
@@ -31,3 +30,4 @@ OPTIONS=\
 # includes and libs
 LIBS = -L/usr/lib
 INCS = -I/usr/include
+
