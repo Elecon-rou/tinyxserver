@@ -47,9 +47,29 @@ vesa: objs
 	dbe/libdbe.a \
 	damageext/libdamageext.a $(LDFLAGS) -lXfont -lX11 -lz -lm
 
+sdl: objs
+	cd sdl; make; cd ..
+
+	gcc $(CPPFLAGS) -o Xsdl dix/libdix.a \
+	os/libos.a \
+	sdl/libsdl.a \
+	kdrive/libkdrive.a \
+	linux/liblinux.a \
+	mishadow/libmishadow.a \
+	midamage/libmidamage.a \
+	fb/libfb.a \
+	mi/libmi.a \
+	Xext/libxext.a \
+	render/librender.a \
+	randr/librandr.a \
+	xfixes/libxfixes.a \
+	dbe/libdbe.a \
+	damageext/libdamageext.a $(LDFLAGS) -lXfont -lX11 -lz -lm -lSDL
+
 clean:
 	rm -f */*.o
 	rm -f */*.a
 	rm -f */*.la
 	rm -f Xfbdev
 	rm -f Xvesa
+	rm -f Xsdl

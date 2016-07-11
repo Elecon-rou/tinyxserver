@@ -9,14 +9,14 @@ INCDIR=$(PREFIX)/include/
 DATADIR=$(PREFIX)/share/
 
 # flags
-CPPFLAGS=-Dlinux -D_BSD_SOURCE -D_GNU_SOURCE $(OPTIONS)
-CFLAGS=-pipe -Os -mtune=generic -Wall $(INCS)
-LDFLAGS=-Wl,--gc-sections,--sort-common,-s $(LIBS)
+CPPFLAGS=-Dlinux -D_BSD_SOURCE -D_GNU_SOURCE -D_DEFAULT_SOURCE $(OPTIONS)
+CFLAGS=-pipe -Os -mtune=generic -Wall -g $(INCS)
+LDFLAGS=-Wl,--gc-sections,--sort-common -g $(LIBS)
 
 OPTIONS=\
--Di386\
+-DDEBUG \
+-Di386 \
 -DSMART_SCHEDULE \
--DLOCALCONN \
 -DTCPCONN \
 -DUNIXCONN \
 -DDPMSExtension \

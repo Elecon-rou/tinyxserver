@@ -1858,7 +1858,7 @@ ProcessKeyboardEvent(register xEvent *xE, register DeviceIntPtr keybd,
     modifiers = keyc->modifierMap[key];
 
 #ifdef DEBUG
-    if ((xkbDebugFlags & 0x4) &&
+    if ((0x4) &&
         ((xE->u.u.type == KeyPress) || (xE->u.u.type == KeyRelease))) {
         ErrorF("CoreProcessKbdEvent: Key %d %s\n", key,
                (xE->u.u.type == KeyPress ? "down" : "up"));
