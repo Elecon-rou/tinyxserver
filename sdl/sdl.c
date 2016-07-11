@@ -228,7 +228,7 @@ static Bool sdlScreenInit(KdScreenInfo *screen)
 {
 	struct SdlDriver *sdlDriver=calloc(1, sizeof(struct SdlDriver));
 #ifdef DEBUG
-	printf("sdlScreenInit()\n");
+	ErrorF("sdlScreenInit()\n");
 #endif
 	if (!screen->width || !screen->height)
 	{
@@ -238,13 +238,13 @@ static Bool sdlScreenInit(KdScreenInfo *screen)
 	if (!screen->fb.depth)
 		screen->fb.depth = 4;
 #ifdef DEBUG
-	printf("Attempting for %dx%d/%dbpp mode\n", screen->width, screen->height, screen->fb.depth);
+	ErrorF("Attempting for %dx%d/%dbpp mode\n", screen->width, screen->height, screen->fb.depth);
 #endif
 	sdlDriver->screen=SDL_SetVideoMode(screen->width, screen->height, screen->fb.depth, 0);
 	if(sdlDriver->screen==NULL)
 		return FALSE;
 #ifdef DEBUG
-	printf("Set %dx%d/%dbpp mode\n", sdlDriver->screen->w, sdlDriver->screen->h, sdlDriver->screen->format->BitsPerPixel);
+	ErrorF("Set %dx%d/%dbpp mode\n", sdlDriver->screen->w, sdlDriver->screen->h, sdlDriver->screen->format->BitsPerPixel);
 #endif
 	screen->width=sdlDriver->screen->w;
 	screen->height=sdlDriver->screen->h;
@@ -272,14 +272,14 @@ void sdlShadowUpdate (ScreenPtr pScreen, shadowBufPtr pBuf)
 	KdScreenInfo *screen = pScreenPriv->screen;
 	struct SdlDriver *sdlDriver=screen->driver;
 #ifdef DEBUG
-	printf("Shadow update()\n");
+	ErrorF("Shadow update()\n");
 #endif
 	if(SDL_MUSTLOCK(sdlDriver->screen))
 	{
 		if(SDL_LockSurface(sdlDriver->screen)<0)
 		{
 #ifdef DEBUG
-			printf("Couldn't lock SDL surface - d'oh!\n");
+			ErrorF("Couldn't lock SDL surface - d'oh!\n");
 #endif
 			return;
 		}
@@ -298,7 +298,7 @@ void *sdlShadowWindow (ScreenPtr pScreen, CARD32 row, CARD32 offset, int mode, C
 	struct SdlDriver *sdlDriver=screen->driver;
 	*size=(sdlDriver->screen->w*sdlDriver->screen->format->BitsPerPixel)/8;
 #ifdef DEBUG
-	printf("Shadow window()\n");
+	ErrorF("Shadow window()\n");
 #endif
 	return (void *)((CARD8 *)sdlDriver->screen->pixels + row * (*size) + offset);
 }
@@ -330,14 +330,14 @@ static Bool sdlFinishInitScreen(ScreenPtr pScreen)
 static void sdlKeyboardBell (int volume, int pitch, int duration)
 {
 #ifdef DEBUG
-	printf("a bell would go here\n");
+	ErrorF("a bell would go here\n");
 #endif
 }
 
 static void sdlKeyboardLeds (int leds)
 {
 #ifdef DEBUG
-	printf("Leds: %d\n", leds);
+	ErrorF("Leds: %d\n", leds);
 #endif
 }
 
@@ -350,7 +350,6 @@ static void sdlKeyboardLoad(void)
 	kdMaxKeyCode = 255;
 	kdKeymapWidth = 2;
 	
-
 	memcpy(kdKeymap, sdlKeymap, sizeof(sdlKeymap));
 }
 
@@ -367,7 +366,7 @@ static Bool sdlKeyboardInit(void)
 static Bool sdlMouseInit (void)
 {
 #ifdef DEBUG
-	printf("kdMouseInfo: 0x%x\n", kdMouseInfo);
+	ErrorF("kdMouseInfo: 0x%x\n", kdMouseInfo);
 #endif
 	return TRUE;
 }
@@ -381,7 +380,7 @@ void InitCard(char *name)
 {
         KdCardInfoAdd (&sdlFuncs, 0);
 #ifdef DEBUG
-	printf("InitCard: %s\n", name);
+	ErrorF("InitCard: %s\n", name);
 #endif
 }
 
@@ -389,7 +388,7 @@ void InitOutput(ScreenInfo *pScreenInfo, int argc, char **argv)
 {
 	KdInitOutput(pScreenInfo, argc, argv);
 #ifdef DEBUG
-	printf("InitOutput()\n");
+	ErrorF("InitOutput()\n");
 #endif
 }
 
@@ -470,7 +469,7 @@ void sdlTimer(void)
 static int xsdlInit(void)
 {
 #ifdef DEBUG
-	printf("Calling SDL_Init()\n");
+	ErrorF("Calling SDL_Init()\n");
 #endif
 	return SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 }
